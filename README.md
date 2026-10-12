@@ -306,6 +306,7 @@ Landing page publik Nura dibangun dengan standar performa dan estetika kelas dun
 
 ### Menjalankan Proyek Secara Lokal
 
+#### Opsi A: Menggunakan Node.js / npm
 ```bash
 # 1. Masuk ke direktori landing page
 cd "Nura Landing"
@@ -322,6 +323,30 @@ npm run build
 # Menghasilkan static bundle di folder dist/ (zero error TypeScript)
 ```
 
+#### Opsi B: Menggunakan Docker (Rekomendasi untuk Deployment / Produksi)
+Landing page ini dilengkapi dengan konfigurasi multi-stage Docker (Node build + Nginx alpine) yang ringan, cepat, dan aman:
+
+```bash
+# 1. Build image Docker
+docker build -t nura-landing .
+
+# 2. Jalankan container pada port 8080 (atau port pilihan Anda)
+docker run -d --name nura-landing-app -p 8080:80 nura-landing
+# Akses melalui browser di http://localhost:8080/
+```
+
+#### Opsi C: Menggunakan Docker Compose (One-Click Run)
+```bash
+# Menjalankan service di background
+docker compose up -d
+
+# Memeriksa status log container
+docker compose logs -f
+
+# Menghentikan service
+docker compose down
+```
+
 ### Struktur File
 
 ```
@@ -335,6 +360,10 @@ Nura Landing/
 │   ├── lib/                # Utility helper class names (cn)
 │   ├── App.tsx             # Orkes komposisi halaman utama
 │   └── index.css           # Token desain, font, dan animasi mikro
+├── .dockerignore           # Pengecualian build konteks Docker
+├── Dockerfile              # Multi-stage production build (Node 20 -> Nginx Alpine)
+├── docker-compose.yml      # Konfigurasi container service port 8080
+├── nginx.conf              # Konfigurasi Nginx SPA routing, gzip & caching
 ├── tailwind.config.ts      # Definisi palet warna Nura
 └── vite.config.ts          # Konfigurasi Vite & path alias (@/*)
 ```
