@@ -1,0 +1,78 @@
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/inter';
+@import '@fontsource/instrument-serif';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nura-purple: #8454e4;
+  --nura-purple-light: #9c6cfc;
+  --nura-purple-soft: #f3ebff;
+  --nura-purple-dark: #6835d4;
+  --nura-forest: #0b2d2c;
+  --nura-forest-dark: #061a19;
+  --nura-forest-light: #13403e;
+  --nura-teal: #1f736b;
+  --nura-cream: #faf7f0;
+  --nura-ivory: #f5f1e6;
+  --nura-gold: #daab5b;
+  --nura-plum: #15111f;
+  --nura-charcoal: #121017;
+  --nura-text: #171f1d;
+  --nura-text-muted: #5c6865;
+  --nura-border: #e6dfcf;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans Variable', 'Inter Variable', system-ui, sans-serif;
+  color: var(--nura-text);
+  background-color: var(--nura-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(132, 84, 228, 0.2);
+  color: #171f1d;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf7f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4ccb8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8ad96;
+}
+
+/* Clean utility classes for micro-interactions */
+.glass-nav {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
